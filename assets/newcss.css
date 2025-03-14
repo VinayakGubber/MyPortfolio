@@ -88,6 +88,14 @@ body.dark-theme {
   align-items: center;
 }
 
+#logo-light,
+#logo-dark {
+  display: none; /* Hide both logos initially */
+}
+
+.js-enabled #logo-light {
+  display: block;
+}
 .change-theme {
   font-size: 1.25rem;
   color: var(--title-color);

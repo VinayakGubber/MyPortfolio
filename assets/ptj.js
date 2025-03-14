@@ -2,7 +2,8 @@
 const themeButton = document.getElementById("theme-button");
 const darkTheme = "dark-theme";
 const iconTheme = "uil-sun";
-
+document.documentElement.classList.add("js-enabled");
+changeLogoBasedOnTheme();
 // Logos
 const logoLight = document.getElementById("logo-light");
 const logoDark = document.getElementById("logo-dark");
@@ -14,13 +15,18 @@ const selectedIcon = localStorage.getItem("selected-icon");
 // Function to change logos based on theme
 function changeLogoBasedOnTheme() {
   if (document.body.classList.contains(darkTheme)) {
-    logoLight.style.display = "none"; // Hide light theme logo
-    logoDark.style.display = "block"; // Show dark theme logo
+    document.getElementById("logo-light").style.display = "none";
+    document.getElementById("logo-dark").style.display = "block";
   } else {
-    logoLight.style.display = "block"; // Show light theme logo
-    logoDark.style.display = "none"; // Hide dark theme logo
+    document.getElementById("logo-light").style.display = "block";
+    document.getElementById("logo-dark").style.display = "none";
   }
 }
+
+// Ensure the correct logo is shown immediately on page load
+document.addEventListener("DOMContentLoaded", function () {
+  changeLogoBasedOnTheme();
+});
 
 // We validate if the user previously chose a theme
 if (selectedTheme) {
@@ -136,23 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  /*==================== TESTIMONIAL SWIPER  ====================*/
-  let swiperTestimonial = new Swiper(".testimonial__container", {
-    loop: true,
-    grabCursor: true,
-    spaceBetween: 48,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      dynamicBullets: true,
-    },
-    breakpoints: {
-      568: {
-        slidesPerView: 2,
-      },
-    },
-  });
-});
 
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 document.addEventListener("DOMContentLoaded", function () {
