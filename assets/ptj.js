@@ -1,57 +1,58 @@
-// Theme switcher functionality from your ptj.js file
+// Theme switcher functionality
 const themeButton = document.getElementById("theme-button");
 const darkTheme = "dark-theme";
 const iconTheme = "uil-sun";
-document.documentElement.classList.add("js-enabled");
-changeLogoBasedOnTheme();
-// Logos
-const logoLight = document.getElementById("logo-light");
-const logoDark = document.getElementById("logo-dark");
 
-// Previously selected theme (if user selected)
+// Ensure the correct logo is shown immediately on page load
+document.addEventListener("DOMContentLoaded", function () {
+  const logoLight = document.getElementById("logo-light");
+  const logoDark = document.getElementById("logo-dark");
+
+  if (!logoLight || !logoDark) {
+    console.error("Logo elements not found!");
+    return;
+  }
+
+  changeLogoBasedOnTheme(); // Ensures logo updates correctly
+});
+
+// Get saved theme preference
 const selectedTheme = localStorage.getItem("selected-theme");
 const selectedIcon = localStorage.getItem("selected-icon");
 
 // Function to change logos based on theme
 function changeLogoBasedOnTheme() {
+  const logoLight = document.getElementById("logo-light");
+  const logoDark = document.getElementById("logo-dark");
+
   if (document.body.classList.contains(darkTheme)) {
-    document.getElementById("logo-light").style.display = "none";
-    document.getElementById("logo-dark").style.display = "block";
+    logoLight.style.display = "none";
+    logoDark.style.display = "block";
   } else {
-    document.getElementById("logo-light").style.display = "block";
-    document.getElementById("logo-dark").style.display = "none";
+    logoLight.style.display = "block";
+    logoDark.style.display = "none";
   }
 }
 
-// Ensure the correct logo is shown immediately on page load
-document.addEventListener("DOMContentLoaded", function () {
-  changeLogoBasedOnTheme();
-});
-
-// We validate if the user previously chose a theme
+// Apply saved theme
 if (selectedTheme) {
-  // If the validation is fulfilled, we apply the selected theme and icon
   document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
     darkTheme
   );
   themeButton.classList[selectedIcon === "uil-moon" ? "add" : "remove"](
     iconTheme
   );
-
-  // Also apply the logo change
   changeLogoBasedOnTheme();
 }
 
-// Activate / deactivate the theme manually with the button
+// Theme toggle button functionality
 themeButton.addEventListener("click", () => {
-  // Add or remove the dark / icon theme
   document.body.classList.toggle(darkTheme);
   themeButton.classList.toggle(iconTheme);
 
-  // Change logo based on theme
-  changeLogoBasedOnTheme();
+  changeLogoBasedOnTheme(); // Update logo when theme changes
 
-  // Save the theme and the current icon that the user chose
+  // Save user preference
   localStorage.setItem("selected-theme", getCurrentTheme());
   localStorage.setItem("selected-icon", getCurrentIcon());
 });
@@ -66,149 +67,100 @@ function getCurrentIcon() {
   return themeButton.classList.contains(iconTheme) ? "uil-moon" : "uil-sun";
 }
 
-/*==================== SKILLS ACCORDION ====================*/
-document.addEventListener("DOMContentLoaded", function () {
-  const skillsContent = document.getElementsByClassName("skills__content");
-  const skillsHeader = document.querySelectorAll(".skills__header");
+// Skills section toggle functionality
+const skillsContent = document.getElementsByClassName("skills__content");
+const skillsHeader = document.querySelectorAll(".skills__header");
 
-  function toggleSkills() {
-    let itemClass = this.parentNode.className;
+function toggleSkills() {
+  let itemClass = this.parentNode.className;
 
-    // Close all skill sections first
-    for (let i = 0; i < skillsContent.length; i++) {
-      skillsContent[i].className = "skills__content skills__close";
-    }
-
-    // Then open the clicked one if it was closed
-    if (itemClass === "skills__content skills__close") {
-      this.parentNode.className = "skills__content skills__open";
-    }
+  // Close all skills sections first
+  for (let i = 0; i < skillsContent.length; i++) {
+    skillsContent[i].className = "skills__content skills__close";
   }
 
-  skillsHeader.forEach((el) => {
-    el.addEventListener("click", toggleSkills);
+  // Open the clicked one
+  if (itemClass === "skills__content skills__close") {
+    this.parentNode.className = "skills__content skills__open";
+  }
+}
+
+// Add click event to all skills headers
+skillsHeader.forEach((el) => {
+  el.addEventListener("click", toggleSkills);
+});
+
+// Modal functionality for education section
+const modalViews = document.querySelectorAll(".services__modal");
+const modalBtns = document.querySelectorAll(".services__button");
+const modalCloses = document.querySelectorAll(".services__modal-close");
+
+let modal = function (modalClick) {
+  modalViews[modalClick].classList.add("active-modal");
+};
+
+modalBtns.forEach((modalBtn, i) => {
+  modalBtn.addEventListener("click", () => {
+    modal(i);
   });
 });
 
-/*==================== QUALIFICATION MODAL ====================*/
-document.addEventListener("DOMContentLoaded", function () {
-  const modalViews = document.querySelectorAll(".services__modal");
-  const modalBtns = document.querySelectorAll(".services__button");
-  const modalCloses = document.querySelectorAll(".services__modal-close");
-
-  // Function to open modal
-  function openModal(modalIndex) {
-    modalViews[modalIndex].classList.add("active-modal");
-  }
-
-  // Add click event to all modal buttons
-  modalBtns.forEach((modalBtn, i) => {
-    modalBtn.addEventListener("click", () => {
-      openModal(i);
-    });
-  });
-
-  // Function to close modal when clicking the X button
-  modalCloses.forEach((modalClose) => {
-    modalClose.addEventListener("click", () => {
-      modalViews.forEach((modalView) => {
-        modalView.classList.remove("active-modal");
-      });
-    });
-  });
-
-  // Close modal when clicking outside the modal content
-  modalViews.forEach((modalView) => {
-    modalView.addEventListener("click", (e) => {
-      if (e.target === modalView) {
-        modalView.classList.remove("active-modal");
-      }
+modalCloses.forEach((modalClose) => {
+  modalClose.addEventListener("click", () => {
+    modalViews.forEach((modalView) => {
+      modalView.classList.remove("active-modal");
     });
   });
 });
 
-/*==================== PORTFOLIO SWIPER  ====================*/
-document.addEventListener("DOMContentLoaded", function () {
-  let swiperPortfolio = new Swiper(".portfolio__container", {
-    cssMode: true,
-    loop: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
+// Initialize Swiper for portfolio projects
+const swiperPortfolio = new Swiper(".portfolio__container", {
+  cssMode: true,
+  loop: true,
 
+  // Enable pagination with clickable bullets
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
 
-/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
-document.addEventListener("DOMContentLoaded", function () {
-  const sections = document.querySelectorAll("section[id]");
-
-  function scrollActive() {
-    const scrollY = window.pageYOffset;
-
-    sections.forEach((current) => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 50;
-      const sectionId = current.getAttribute("id");
-
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        document
-          .querySelector(".nav__menu a[href*=" + sectionId + "]")
-          .classList.add("active-link");
-      } else {
-        document
-          .querySelector(".nav__menu a[href*=" + sectionId + "]")
-          .classList.remove("active-link");
-      }
-    });
-  }
-
-  window.addEventListener("scroll", scrollActive);
+  // Enable navigation arrows if needed
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 });
 
-/*==================== SHOW SCROLL UP ====================*/
-document.addEventListener("DOMContentLoaded", function () {
-  function scrollUp() {
-    const scrollUp = document.getElementById("scroll-up");
-    if (this.scrollY >= 560) {
-      scrollUp.classList.add("show-scroll");
+// Scroll sections active link
+const sections = document.querySelectorAll("section[id]");
+
+function scrollActive() {
+  const scrollY = window.pageYOffset;
+
+  sections.forEach((current) => {
+    const sectionHeight = current.offsetHeight;
+    const sectionTop = current.offsetTop - 50;
+    const sectionId = current.getAttribute("id");
+
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      document
+        .querySelector(".nav__menu a[href*=" + sectionId + "]")
+        .classList.add("active-link");
     } else {
-      scrollUp.classList.remove("show-scroll");
+      document
+        .querySelector(".nav__menu a[href*=" + sectionId + "]")
+        .classList.remove("active-link");
     }
-  }
-
-  window.addEventListener("scroll", scrollUp);
-});
-
-/*==================== MOBILE NAV MENU ====================*/
-document.addEventListener("DOMContentLoaded", function () {
-  const navMenu = document.getElementById("nav-menu");
-  const navToggle = document.getElementById("nav-toggle");
-  const navClose = document.getElementById("nav-close");
-
-  // Show menu
-  if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      navMenu.classList.add("show-menu");
-    });
-  }
-
-  // Hide menu
-  if (navClose) {
-    navClose.addEventListener("click", () => {
-      navMenu.classList.remove("show-menu");
-    });
-  }
-
-  // Hide menu when clicking on nav links
-  const navLinks = document.querySelectorAll(".nav__link");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("show-menu");
-    });
   });
-});
+}
+
+window.addEventListener("scroll", scrollActive);
+
+// Show scroll up button
+function scrollUp() {
+  const scrollUp = document.getElementById("scroll-up");
+  if (this.scrollY >= 560) scrollUp.classList.add("show-scroll");
+  else scrollUp.classList.remove("show-scroll");
+}
+
+window.addEventListener("scroll", scrollUp);

@@ -88,9 +88,11 @@ body.dark-theme {
   align-items: center;
 }
 
-#logo-light,
+#logo-light {
+  display: block; /* Show light logo initially */
+}
 #logo-dark {
-  display: none; /* Hide both logos initially */
+  display: none; /* Keep dark logo hidden initially */
 }
 
 .js-enabled #logo-light {
@@ -757,6 +759,17 @@ img {
 
 .contact__container {
   row-gap: 2rem;
+}
+
+.contact__email {
+  display: inline-block; /* Ensures it's clickable */
+  color: var(--first-color); /* Change color for visibility */
+  text-decoration: underline; /* Ensures it looks like a link */
+  cursor: pointer;
+}
+
+.contact__email:hover {
+  color: var(--first-color-alt); /* Change color on hover */
 }
 
 .contact__information {
