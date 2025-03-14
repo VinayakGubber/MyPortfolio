@@ -713,7 +713,8 @@ img {
   padding: 0 1.5rem;
 }
 .portfolio__img {
-  width: 310px;
+  width: 350px;
+  height: 200px;
   border-radius: 0.5rem;
   justify-self: center;
 }

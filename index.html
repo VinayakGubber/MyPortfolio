@@ -33,6 +33,8 @@
 
   <body oncontextmenu="return false">
     <header class="header" id="header">
+      <!--========================= Navigation =====================-->
+
       <nav class="nav container">
         <!-- Logo container with both logos inside -->
         <div class="nav__logo-container">
@@ -148,7 +150,7 @@
                     class="home__blob-img"
                     x="-80"
                     y="-16"
-                    xlink:href="assets/img/profile.jpeg"
+                    xlink:href="assets/img/Profile.jpg"
                   />
                 </g>
               </svg>
@@ -185,7 +187,7 @@
         <span class="section__subtitle">My introduction</span>
 
         <div class="about__container container grid">
-          <img src="assets/img/profile.jpeg" alt="" class="about__img" />
+          <img src="assets/img/Profile.jpg" alt="" class="about__img" />
 
           <div class="about__data">
             <p class="about__description">
@@ -215,8 +217,18 @@
               </div>
             </div>
 
+            <!-- <div class="about__buttons">
+              <a download="" href="assets/" class="button button--flex">
+                Download CV<i class="uil uil-download-alt button__icon"></i>
+              </a>
+            </div> -->
+
             <div class="about__buttons">
-              <a download="" href="#" class="button button--flex">
+              <a
+                href="errorPage.html"
+                class="button button--flex"
+                target="_blank"
+              >
                 Download CV<i class="uil uil-download-alt button__icon"></i>
               </a>
             </div>
@@ -486,12 +498,6 @@
                           <i
                             class="uil uil-check-circle services__modal-icon"
                           ></i>
-                          <p>Scored excellent grades in core subjects.</p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
                           <p>
                             Came runners up in 800 meters running race in 8<sup
                               >th</sup
@@ -702,18 +708,24 @@
           <div class="swiper-wrapper">
             <!-- ------------------------portfollio 1-------------------- -->
             <div class="portfolio__content grid swiper-slide">
-              <img src="assets/img/portfolio5.png" class="portfolio__img" />
+              <img
+                src="assets/img/PROJECT___NoteSphere_Preview.png"
+                class="portfolio__img"
+              />
 
               <div class="portfolio__data">
-                <h3 class="portfolio__title">E-Commerce Web Application</h3>
+                <h3 class="portfolio__title">Note Sphere</h3>
                 <p class="portfolio__description">
-                  A full-stack e-commerce platform built with the MERN stack
-                  (MongoDB, Express, React, Node.js). Features include user
-                  authentication, product catalog, shopping cart, and payment
-                  processing integration.
+                  Note Sphere is a MERN stack web application designed to help
+                  users store, organize, and access their notes in one place. It
+                  offers a seamless and secure platform for creating, editing,
+                  and managing notes. Built with MongoDB, Express.js, React, and
+                  Node.js, Note Sphere ensures a smooth user experience. Whether
+                  for personal use or collaboration, it provides an efficient
+                  way to keep track of important information anytime, anywhere.
                 </p>
                 <a
-                  href="https://github.com/VinayakGubber"
+                  href="https://github.com/VinayakGubber/NoteSphere"
                   target="_blank"
                   class="button button--flex button--small portfolio__button"
                 >
@@ -723,6 +735,7 @@
                 <a
                   href="#"
                   class="button button--flex button--small portfolio__button"
+                  target="_blank"
                 >
                   See Live
                   <i class="uil uil-external-link-alt button__icon"></i>
@@ -732,17 +745,23 @@
             <!-- ------------------------portfollio 2-------------------- -->
 
             <div class="portfolio__content grid swiper-slide">
-              <img src="assets/img/portfolio1.png" class="portfolio__img" />
+              <img
+                src="assets/img/PROJECT___ResumeBuilder_Preview.png"
+                class="portfolio__img"
+              />
 
               <div class="portfolio__data">
-                <h3 class="portfolio__title">Weather Forecast Application</h3>
+                <h3 class="portfolio__title">Resume Builder</h3>
                 <p class="portfolio__description">
-                  A responsive weather application that fetches and displays
-                  real-time weather data. Built using JavaScript and a weather
-                  API, featuring location detection and 5-day forecasts.
+                  The Resume Builder is a web-based application that helps users
+                  create professional resumes effortlessly by filling out a
+                  structured form. Once the required information is provided,
+                  the application generates a downloadable PDF resume. This
+                  project utilizes HTML, CSS, and JavaScript to deliver a
+                  seamless and user-friendly experience.
                 </p>
                 <a
-                  href="https://github.com/VinayakGubber"
+                  href="https://github.com/VinayakGubber/ResumeBuilder"
                   target="_blank"
                   class="button button--flex button--small portfolio__button"
                 >
@@ -750,7 +769,8 @@
                   <i class="uil uil-external-link-alt button__icon"></i>
                 </a>
                 <a
-                  href="#"
+                  href="https://resumebuilder-fawn.vercel.app/"
+                  target="_blank"
                   class="button button--flex button--small portfolio__button"
                 >
                   See Live
@@ -760,7 +780,7 @@
             </div>
 
             <!-- ------------------------portfollio 3-------------------- -->
-            <div class="portfolio__content grid swiper-slide">
+            <!-- <div class="portfolio__content grid swiper-slide">
               <img src="assets/img/portfolio2.png" class="portfolio__img" />
 
               <div class="portfolio__data">
@@ -781,14 +801,15 @@
                 <a
                   href="#"
                   class="button button--flex button--small portfolio__button"
+                  target="_blank"
                 >
                   See Live
                   <i class="uil uil-external-link-alt button__icon"></i>
                 </a>
               </div>
-            </div>
+            </div> -->
             <!-- ------------------------portfollio 4-------------------- -->
-            <div class="portfolio__content grid swiper-slide">
+            <!-- <div class="portfolio__content grid swiper-slide">
               <img src="assets/img/portfolio3.png" class="portfolio__img" />
 
               <div class="portfolio__data">
@@ -809,12 +830,13 @@
                 <a
                   href="#"
                   class="button button--flex button--small portfolio__button"
+                  target="_blank"
                 >
                   See Live
                   <i class="uil uil-external-link-alt button__icon"></i>
                 </a>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <!-- Add pagination -->
