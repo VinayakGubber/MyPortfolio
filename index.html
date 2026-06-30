@@ -1,991 +1,1561 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <link
-      rel="icon"
-      sizes="16x16"
-      href="favicon_io/favicon-16x16.png"
-      type="image/png"
-    />
-    <link
-      rel="icon"
-      sizes="32x32"
-      href="favicon_io/favicon-32x32.png"
-      type="image/png"
-    />
-    <link
-      rel="icon"
-      sizes="96x96"
-      href="favicon_io/favicon.ico"
-      type="favicon"
-    />
-    <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/newcss.css" />
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-    />
-  </head>
 
-  <body>
-    <header class="header" id="header">
-      <!--========================= Navigation =====================-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinayak Gubber — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      <nav class="nav container">
-        <!-- Logo container with both logos inside -->
-        <div class="nav__logo-container">
-          <a href="#" class="nav__logo" id="logo-light">
-            <img src="assets/img/logo_light.svg" alt="Logo Light" />
+    :root {
+      --cream: #F7F4EF;
+      --warm-white: #FDFCFA;
+      --stone: #E8E2D9;
+      --dust: #C9C0B3;
+      --muted: #8B8278;
+      --ink: #2C2825;
+      --ink-light: #4A4540;
+      --accent: #9B6E4A;
+      --accent-light: #C49A72;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--warm-white);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .disabled {
+      opacity: 0.5;
+      /* blur/dim effect */
+      pointer-events: none;
+      /* disables all clicks */
+      cursor: not-allowed;
+      /* optional: shows disabled cursor */
+      filter: grayscale(30%);
+      /* optional: washed-out look */
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: rgba(253, 252, 250, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stone);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: var(--ink);
+      background: none;
+      border: none;
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(155, 110, 74, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent-light);
+    }
+
+    h1.hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    h1.hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-role {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--ink-light);
+      max-width: 360px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 2px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--warm-white);
+      border: 1px solid var(--ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--stone);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--ink);
+    }
+
+    .hero-social {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .hero-social a {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--stone);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.25s;
+    }
+
+    .hero-social a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-photo-frame {
+      position: relative;
+      width: 340px;
+      height: 420px;
+    }
+
+    .hero-photo-frame::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      border: 1px solid var(--stone);
+      border-radius: 2px;
+      z-index: 0;
+    }
+
+    .hero-photo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2px;
+      filter: sepia(8%) contrast(1.02);
+    }
+
+    .hero-photo-placeholder {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--stone) 0%, var(--dust) 100%);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .initials-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 1px solid rgba(155, 110, 74, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--dust);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      animation: nudge 2s ease-in-out infinite;
+    }
+
+    @keyframes nudge {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(6px);
+      }
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section {
+      padding: 7rem 3rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent-light);
+    }
+
+    h2.section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-image-col {
+      position: relative;
+    }
+
+    .about-img-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--stone);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(8%) contrast(1.02);
+    }
+
+    .about-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, var(--dust) 0%, var(--stone) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--accent);
+    }
+
+    .stat-strip {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--ink);
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    .about-text p {
+      font-size: 15.5px;
+      line-height: 1.85;
+      color: var(--ink-light);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .skill-group {
+      border-top: 1px solid var(--stone);
+      padding-top: 1.5rem;
+    }
+
+    .skill-group-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-item {
+      margin-bottom: 1.25rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-name {
+      font-size: 14px;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .skill-pct {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .skill-bar {
+      height: 1px;
+      background: var(--stone);
+      position: relative;
+      border-radius: 0;
+    }
+
+    .skill-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 0;
+      transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 0;
+    }
+
+    /* ─── QUALIFICATION ─── */
+    #qualification {
+      background: var(--cream);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 680px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--stone);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--accent-light);
+      background: var(--warm-white);
+      position: relative;
+      top: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timeline-dot::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: block;
+    }
+
+    .timeline-body {}
+
+    .timeline-date {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--stone);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background: var(--warm-white);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44, 40, 37, 0.08);
+    }
+
+    .project-img-wrap {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--stone);
+    }
+
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      filter: sepia(5%);
+    }
+
+    .project-card:hover .project-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .project-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--stone) 100%);
+    }
+
+    .project-placeholder-icon {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--dust);
+    }
+
+    .project-body {
+      padding: 1.5rem;
+    }
+
+    .project-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--stone);
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--cream);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-left {}
+
+    .contact-tagline {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--stone);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .contact-value a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      color: var(--accent);
+    }
+
+    .contact-form-col {}
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--stone);
+      padding: 0.5rem 0;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.25s;
+      font-weight: 300;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.55);
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      margin: 1.2rem 0;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.2rem 0 1.5rem;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .footer-social a:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ─── SCROLL TOP ─── */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 99;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--warm-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 18px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .scroll-top:hover {
+      background: var(--accent);
+    }
+
+    /* ─── FADE IN ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── MOBILE NAV ─── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--warm-white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 200;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .hero-photo-frame {
+        width: 200px;
+        height: 250px;
+        margin: 0 auto;
+      }
+
+      .hero-photo-frame::before {
+        display: none;
+      }
+
+      .hero-desc {
+        margin: 0 auto 2rem;
+      }
+
+      .hero-label {
+        justify-content: center;
+      }
+
+      .hero-social {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .about-grid,
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .skills-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Disable link */
+    .disabled-link {
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">Vinayak<em style="font-style:italic; color: var(--accent)">.</em></a>
+    <ul class="nav-links" id="navLinks">
+      <a href="#"
+        style="display:none; font-size:1.5rem; color:var(--ink); text-decoration:none; position:absolute; top:1.5rem; right:1.5rem;"
+        id="navClose">✕</a>
+      <li><a href="#about" onclick="closeNav()">About</a></li>
+      <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+      <li><a href="#qualification" onclick="closeNav()">Journey</a></li>
+      <li><a href="#portfolio" onclick="closeNav()">Projects</a></li>
+      <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <i class="uil uil-bars"></i>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid section-inner">
+      <div>
+        <div class="hero-label"></div>
+        <h1 class="hero-name">Vinayak<br><em>Gubber</em></h1>
+        <p class="hero-role"></p>
+        <p class="hero-desc">
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="https://drive.google.com/file/d/1DPtP9AkN8Aih48jq8wCt6AKfAScVBC24/view" target="_blank"
+            class="btn btn-outline">Download CV</a>
+        </div>
+        <div class="hero-social" style="flex-direction:row; margin-top:2.5rem; gap:0.75rem;">
+          <a href="https://www.linkedin.com/in/vinayakgubber/" target="_blank" title="LinkedIn">
+            <i class="uil uil-linkedin-alt"></i>
           </a>
-          <a href="#" class="nav__logo" id="logo-dark" style="display: none">
-            <img src="assets/img/logo_dark.svg" alt="Logo Dark" />
+          <a href="https://github.com/VinayakGubber" target="_blank" title="GitHub">
+            <i class="uil uil-github-alt"></i>
+          </a>
+          <a href="https://www.instagram.com/_vinayak__007___/" target="_blank" title="Instagram">
+            <i class="uil uil-instagram-alt"></i>
           </a>
         </div>
-
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list grid">
-            <li class="nav__item">
-              <a href="#home" class="nav__link active-link">
-                <i class="uil uil-estate nav__icon"></i>Home
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#about" class="nav__link">
-                <i class="uil uil-user nav__icon"></i>About
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#skills" class="nav__link">
-                <i class="uil uil-file-alt nav__icon"></i>Skills
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#qualification" class="nav__link">
-                <i class="uil uil-briefcase-alt nav__icon"></i>Qualification
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#portfolio" class="nav__link">
-                <i class="uil uil-scenery nav__icon"></i>Projects
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#contact" class="nav__link">
-                <i class="uil uil-message nav__icon"></i>Contact-Me
-              </a>
-            </li>
-          </ul>
-          <i class="uil uil-times nav__close" id="nav-close"></i>
-        </div>
-        <div class="nav__btns">
-          <!-- Theme change button -->
-          <i class="uil uil-moon change-theme" id="theme-button"></i>
-
-          <div class="nav__toggle" id="nav-toggle">
-            <i class="uil uil-apps"></i>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <!-- main-->
-
-    <main class="main">
-      <!--========================= Home =====================-->
-
-      <section class="home section" id="home">
-        <div class="home__container container grid">
-          <div class="home__content grid">
-            <div class="home__social">
-              <a
-                href="https://www.linkedin.com/in/vinayakgubber/"
-                target="_blank"
-                class="home__social-icon"
-              >
-                <i class="uil uil-linkedin-alt home__icon"></i>
-              </a>
-
-              <a
-                href="https://github.com/VinayakGubber"
-                target="_blank"
-                class="home__social-icon"
-              >
-                <i class="uil uil-github-alt home__icon"></i>
-              </a>
-
-              <a
-                href="https://www.instagram.com/_vinayak__007___/"
-                target="_blank"
-                class="home__social-icon"
-              >
-                <i class="uil uil-instagram-alt home__icon"></i>
-              </a>
-            </div>
-            <div class="home__img">
-              <svg
-                class="home__blob"
-                viewBox="0 0 200 187"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <mask id="mask0" mask-type="alpha">
-                  <path
-                    d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                      130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                      97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                      0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                  />
-                </mask>
-                <g mask="url(#mask0)">
-                  <path
-                    d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                      165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                      129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                     -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                  />
-                  <image
-                    class="home__blob-img"
-                    x="-80"
-                    y="-16"
-                    xlink:href="assets/img/Profile.jpg"
-                  />
-                </g>
-              </svg>
-            </div>
-            <div class="home__data">
-              <h1 class="home__title">Hi, I'm Vinayak Gubber</h1>
-              <h3 class="home__subtitle">
-                Master of computer applications student
-              </h3>
-              <p class="home__description">
-                A Second-year postgraduate at
-                <strong>R V C E</strong>, Bengaluru.
-              </p>
-              <a href="#contact" class="button button--flex">
-                Contact me<i class="uil uil-message button__icon"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="home__scroll">
-            <a href="#about" class="home__scroll-button button--flex">
-              <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-              <span class="home__scroll-name">Scroll down</span>
-              <i class="uil uil-arrow-down home__scroll-arrow"></i>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!--======================= About========================-->
-
-      <section class="about section" id="about">
-        <h2 class="section__title">About Me</h2>
-        <span class="section__subtitle">My introduction</span>
-
-        <div class="about__container container grid">
-          <img src="assets/img/Profile.jpg" alt="" class="about__img" />
-
-          <div class="about__data">
-            <p class="about__description">
-              I'm a first-year MCA postgraduate, passionate about technology and
-              an avid reader. I have a self-motivated and can-do attitude,
-              thriving in challenging and dynamic environments. Seeking a
-              competitive position to enhance my skills and contribute to a
-              professional organization. I'm very much passionate to learn new
-              stuff that interests me and can help me to get better. Also i work
-              well under pressure!
-            </p>
-
-            <div class="about__info">
-              <div>
-                <span class="about__info-title">08.05</span>
-                <span class="about__info-name">Aggregate <br />CGPA</span>
-              </div>
-
-              <div>
-                <span class="about__info-title">03+</span>
-                <span class="about__info-name"> Projects</span>
-              </div>
-
-              <!-- <div>
-                <span class="about__info-title">01+</span>
-                <span class="about__info-name">Months <br />experience</span>
-              </div> -->
-            </div>
-
-            <!-- <div class="about__buttons">
-              <a download="" href="assets/" class="button button--flex">
-                Download CV<i class="uil uil-download-alt button__icon"></i>
-              </a>
-            </div> -->
-
-            <div class="about__buttons">
-              <a
-                href="assets/Mycv.pdf"
-                class="button button--flex"
-                target="_blank"
-              >
-                Download CV<i class="uil uil-download-alt button__icon"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--===================== SKILLS =====================-->
-
-      <section class="skills section" id="skills">
-        <h2 class="section__title">Skills</h2>
-        <span class="section__subtitle">My technical level</span>
-
-        <div class="skills__container container grid">
-          <div>
-            <!--==================== Skill 1 =================-->
-            <div class="skills__content skills__open">
-              <div class="skills__header">
-                <i class="uil uil-brackets-curly skills__icon"></i>
-
-                <div>
-                  <h1 class="skills__title">Programming Languages</h1>
-                </div>
-
-                <i class="uil uil-angle-down skills__arrow"></i>
-              </div>
-
-              <div class="skills__list grid">
-                <!-- <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">C</h3>
-                    <span class="skills__number">85%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__c"></span>
-                  </div>
-                </div> -->
-                <!-- <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">C++</h3>
-                    <span class="skills__number">80%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__cpp"></span>
-                  </div>
-                </div> -->
-
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">Java</h3>
-                    <span class="skills__number">75%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__java"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">JavaScript</h3>
-                    <span class="skills__number">70%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__js"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">Python</h3>
-                    <span class="skills__number">50%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__python"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!--==================== Skill 2 =================-->
-            <div class="skills__content skills__close">
-              <div class="skills__header">
-                <i class="uil uil-server-network skills__icon"></i>
-
-                <div>
-                  <h1 class="skills__title">IT Constructs</h1>
-                </div>
-
-                <i class="uil uil-angle-down skills__arrow"></i>
-              </div>
-
-              <div class="skills__list grid">
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">DS & Algorithms</h3>
-                    <span class="skills__number">60%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__dsa"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">OOP</h3>
-                    <span class="skills__number">85%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__oop"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">OS</h3>
-                    <span class="skills__number">60%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__os"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">Computer Networks</h3>
-                    <span class="skills__number">75%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__networks"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <!--==================== Skill 3 =================-->
-            <div class="skills__content skills__close">
-              <div class="skills__header">
-                <i class="uil uil-swatchbook skills__icon"></i>
-                <div>
-                  <h1 class="skills__title">Technologies</h1>
-                </div>
-
-                <i class="uil uil-angle-down skills__arrow"></i>
-              </div>
-
-              <div class="skills__list grid">
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">Git</h3>
-                    <span class="skills__number">85%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__git"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">MongoDB</h3>
-                    <span class="skills__number">75%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__mongodb"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">ExpressJs</h3>
-                    <span class="skills__number">60%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__express"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">ReactJs</h3>
-                    <span class="skills__number">65%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__react"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">NodeJs</h3>
-                    <span class="skills__number">70%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__node"></span>
-                  </div>
-                </div>
-                <div class="skills__data">
-                  <div class="skills__titles">
-                    <h3 class="skills__name">MySQL</h3>
-                    <span class="skills__number">70%</span>
-                  </div>
-                  <div class="skills__bar">
-                    <span class="skills__percentage skills__mysql"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== Qualifications ==================-->
-
-      <section
-        class="qualification__section service__section"
-        id="qualification"
-      >
-        <h2 class="section__title">Qualification</h2>
-        <span class="section__subtitle">My personal journey</span>
-
-        <div
-          class="qualification__container container grid services__container"
-        >
-          <div class="qualification__tabs">
-            <div
-              class="qualification__button button--flex qualification__active"
-              data-target="#education"
-            >
-              <i class="uil uil-graduation-cap qualification__icon"></i>
-              Education
-            </div>
-          </div>
-
-          <div class="qualification__sections">
-            <!--====== Qualification Content 1 ======-->
-            <div
-              class="qualification__content qualifiation__active services__content"
-              data-content
-              id="education"
-            >
-              <!--====== Qualification 1 ======-->
-              <div class="qualification__data">
-                <div>
-                  <h3 class="qualification__title">SSLC</h3>
-                  <span class="qualification__subtitle"
-                    >Jss SDM <br />Central School</span
-                  >
-                  <div class="qualification__calender">
-                    <i class="uil uil-calendar-alt"></i>
-                    - 2018
-                  </div>
-                  <span
-                    class="button button--flex button--small button--link services__button"
-                  >
-                    View More
-                    <i class="uil uil-arrow-right button__icon"></i>
-                  </span>
-                  <div class="services__modal">
-                    <div class="services__modal-content">
-                      <h4 class="services__modal-title">
-                        Class 10th Summary :
-                      </h4>
-                      <i class="uil uil-times services__modal-close"></i>
-                      <ul class="services__modal-services grid">
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Subjects studied: Science, Maths, English, Social
-                            Studies, Kannada, Hindi.
-                          </p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Came runners up in 800 meters running race in 8<sup
-                              >th</sup
-                            >
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <span class="qualification__rounder"></span>
-                  <span class="qualification__line"></span>
-                </div>
-              </div>
-
-              <!--====== Qualification 2 ======-->
-              <div class="qualification__data">
-                <div></div>
-
-                <div>
-                  <span class="qualification__rounder"></span>
-                  <span class="qualification__line"></span>
-                </div>
-                <div>
-                  <h3 class="qualification__title">Class 12th</h3>
-                  <span class="qualification__subtitle"
-                    >Jss SM INDP <br />PU College</span
-                  >
-                  <div class="qualification__calender">
-                    <i class="uil uil-calendar-alt"></i>
-                    - 2021
-                  </div>
-                  <span
-                    class="button button--flex button--small button--link services__button"
-                  >
-                    View More
-                    <i class="uil uil-arrow-right button__icon"></i>
-                  </span>
-                  <div class="services__modal">
-                    <div class="services__modal-content">
-                      <h4 class="services__modal-title">
-                        Class 12th Summary :
-                      </h4>
-                      <i class="uil uil-times services__modal-close"></i>
-                      <ul class="services__modal-services grid">
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Subjects studied: Physics, Chemistry, Maths,
-                            Statistics, English, Hindi.
-                          </p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>Strong foundation in Science and Mathematics.</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--====== Qualification 3 ======-->
-              <div class="qualification__data">
-                <div>
-                  <h3 class="qualification__title">
-                    Bachelor of Computer Applications
-                  </h3>
-                  <span class="qualification__subtitle"
-                    >Vidyabarathi Foundation's IBMR college</span
-                  >
-                  <div class="qualification__calender">
-                    <i class="uil uil-calendar-alt"></i>
-                    2021 - 2024
-                  </div>
-                  <span
-                    class="button button--flex button--small button--link services__button"
-                  >
-                    View More
-                    <i class="uil uil-arrow-right button__icon"></i>
-                  </span>
-                  <div class="services__modal">
-                    <div class="services__modal-content">
-                      <h4 class="services__modal-title">College Summary :</h4>
-                      <i class="uil uil-times services__modal-close"></i>
-                      <ul class="services__modal-services grid">
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Completed Bachelor's degree with focus on computer
-                            applications and programming.
-                          </p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>Scored an aggregate of 8.43 CGPA.</p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Student coordinator in media and publication club of
-                            the degree college.
-                          </p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Participated in various technical competitions and
-                            hackathons.
-                          </p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Completed several core courses in programming,
-                            database management, and web development.
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <span class="qualification__rounder"></span>
-                  <span class="qualification__line"></span>
-                </div>
-              </div>
-
-              <!--====== Qualification 4 ======-->
-              <div class="qualification__data">
-                <div></div>
-
-                <div>
-                  <span class="qualification__rounder"></span>
-                  <!--<span class="qualification__line"></span>-->
-                </div>
-                <div>
-                  <h3 class="qualification__title">
-                    Master of Computer Applications
-                  </h3>
-                  <span class="qualification__subtitle"
-                    >R V College of Engineering, Bengaluru</span
-                  >
-                  <div class="qualification__calender">
-                    <i class="uil uil-calendar-alt"></i>
-                    2024 - Present
-                  </div>
-                  <span
-                    class="button button--flex button--small button--link services__button"
-                  >
-                    View More
-                    <i class="uil uil-arrow-right button__icon"></i>
-                  </span>
-                  <div class="services__modal">
-                    <div class="services__modal-content">
-                      <h4 class="services__modal-title">MCA Summary :</h4>
-                      <i class="uil uil-times services__modal-close"></i>
-                      <ul class="services__modal-services grid">
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            First-year postgraduate student at one of India's
-                            premier engineering institutions.
-                          </p>
-                        </li>
-                        <li class="services__modal-service">
-                          <i
-                            class="uil uil-check-circle services__modal-icon"
-                          ></i>
-                          <p>
-                            Focusing on advanced computer science concepts and
-                            application development.
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--=================== Portfolio ===================-->
-      <section class="portfolio section" id="portfolio">
-        <h2 class="section__title">Projects</h2>
-        <span class="section__subtitle">Most recent work</span>
-
-        <div class="portfolio__container container swiper">
-          <div class="swiper-wrapper">
-            <!-- ------------------------portfollio 1-------------------- -->
-            <div class="portfolio__content grid swiper-slide">
-              <img
-                src="assets/img/PROJECT___NoteSphere_Preview.png"
-                class="portfolio__img"
-              />
-
-              <div class="portfolio__data">
-                <h3 class="portfolio__title">Note Sphere</h3>
-                <p class="portfolio__description">
-                  Note Sphere is a MERN stack web application designed to help
-                  users store, organize, and access their notes in one place. It
-                  offers a seamless and secure platform for creating, editing,
-                  and managing notes. Built with MongoDB, Express.js, React, and
-                  Node.js, Note Sphere ensures a smooth user experience. Whether
-                  for personal use or collaboration, it provides an efficient
-                  way to keep track of important information anytime, anywhere.
-                </p>
-                <a
-                  href="https://github.com/VinayakGubber/NoteSphere"
-                  target="_blank"
-                  class="button button--flex button--small portfolio__button"
-                >
-                  GitHub Repository
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-                <a
-                  href="#"
-                  class="button button--flex button--small portfolio__button"
-                  target="_blank"
-                >
-                  See Live
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-              </div>
-            </div>
-            <!-- ------------------------portfollio 2-------------------- -->
-
-            <div class="portfolio__content grid swiper-slide">
-              <img
-                src="assets/img/PROJECT___ResumeBuilder_Preview.png"
-                class="portfolio__img"
-              />
-
-              <div class="portfolio__data">
-                <h3 class="portfolio__title">Resume Builder</h3>
-                <p class="portfolio__description">
-                  The Resume Builder is a web-based application that helps users
-                  create professional resumes effortlessly by filling out a
-                  structured form. Once the required information is provided,
-                  the application generates a downloadable PDF resume. This
-                  project utilizes HTML, CSS, and JavaScript to deliver a
-                  seamless and user-friendly experience.
-                </p>
-                <a
-                  href="https://github.com/VinayakGubber/ResumeBuilder"
-                  target="_blank"
-                  class="button button--flex button--small portfolio__button"
-                >
-                  GitHub Repository
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-                <a
-                  href="https://resumebuilder-fawn.vercel.app/"
-                  target="_blank"
-                  class="button button--flex button--small portfolio__button"
-                >
-                  See Live
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- ------------------------portfollio 3-------------------- -->
-            <!-- <div class="portfolio__content grid swiper-slide">
-              <img src="assets/img/portfolio2.png" class="portfolio__img" />
-
-              <div class="portfolio__data">
-                <h3 class="portfolio__title">Task Management System</h3>
-                <p class="portfolio__description">
-                  A collaborative task management application built with React
-                  and Node.js. Features include task creation, assignment,
-                  progress tracking, and team collaboration tools.
-                </p>
-                <a
-                  href="https://github.com/VinayakGubber"
-                  target="_blank"
-                  class="button button--flex button--small portfolio__button"
-                >
-                  GitHub Repository
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-                <a
-                  href="#"
-                  class="button button--flex button--small portfolio__button"
-                  target="_blank"
-                >
-                  See Live
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-              </div>
-            </div> -->
-            <!-- ------------------------portfollio 4-------------------- -->
-            <!-- <div class="portfolio__content grid swiper-slide">
-              <img src="assets/img/portfolio3.png" class="portfolio__img" />
-
-              <div class="portfolio__data">
-                <h3 class="portfolio__title">Data Analytics Dashboard</h3>
-                <p class="portfolio__description">
-                  An interactive data visualization dashboard built with D3.js
-                  and React. Features include real-time data processing,
-                  customizable charts, and exportable reports.
-                </p>
-                <a
-                  href="https://github.com/VinayakGubber"
-                  target="_blank"
-                  class="button button--flex button--small portfolio__button"
-                >
-                  GitHub Repository
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-                <a
-                  href="#"
-                  class="button button--flex button--small portfolio__button"
-                  target="_blank"
-                >
-                  See Live
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-              </div>
-            </div> -->
-          </div>
-
-          <!-- Add pagination -->
-          <div class="swiper-pagination"></div>
-
-          <!-- Optional: Add navigation arrows -->
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </section>
-
-      <!--=================== Contact Me ===================-->
-      <section class="contact section" id="contact">
-        <h2 class="section__title">Contact Me</h2>
-        <span class="section__subtitle">Get in touch</span>
-
-        <div class="contact__container container grid">
-          <div>
-            <div class="contact__information">
-              <i class="uil uil-phone contact__icon"></i>
-
-              <div>
-                <h3 class="contact__title">Call Me</h3>
-                <span class="contact__subtitle">+91 82773 05907</span>
-              </div>
-            </div>
-
-            <div class="contact__information">
-              <i class="uil uil-envelope contact__icon"></i>
-
-              <div>
-                <h3 class="contact__title">Email</h3>
-                <a href="mailto:gubbervinayak@gmail.com">
-                  <span class="contact__subtitle">gubbervinayak@gmail.com</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="contact__information">
-              <i class="uil uil-map-marker contact__icon"></i>
-
-              <div>
-                <h3 class="contact__title">Location</h3>
-                <span class="contact__subtitle"
-                  >Bengaluru, Karnataka - India</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- <form action="#" class="contact__form grid">
-            <div class="contact__inputs grid">
-              <div class="contact__content">
-                <label for="name" class="contact__label">Name</label>
-                <input type="text" id="name" class="contact__input" />
-              </div>
-              <div class="contact__content">
-                <label for="email" class="contact__label">Email</label>
-                <input type="email" id="email" class="contact__input" />
-              </div>
-            </div>
-            <div class="contact__content">
-              <label for="subject" class="contact__label">Subject</label>
-              <input type="text" id="subject" class="contact__input" />
-            </div>
-            <div class="contact__content">
-              <label for="message" class="contact__label">Message</label>
-              <textarea
-                id="message"
-                cols="0"
-                rows="7"
-                class="contact__input"
-              ></textarea>
-            </div>
-
-            <div>
-              <a href="#" class="button button--flex">
-                Send Message
-                <i class="uil uil-message button__icon"></i>
-              </a>
-            </div>
-          </form> -->
-        </div>
-      </section>
-    </main>
-
-    <!--==================== FOOTER ====================-->
-    <footer class="footer">
-      <div class="footer__bg">
-        <div class="footer__container container grid">
-          <div>
-            <h1 class="footer__title">Vinayak</h1>
-            <span class="footer__subtitle"
-              >Master of Computer Applications Student</span
-            >
-          </div>
-
-          <ul class="footer__links">
-            <li>
-              <a href="#about" class="footer__link">About</a>
-            </li>
-            <li>
-              <a href="#portfolio" class="footer__link">Projects</a>
-            </li>
-            <li>
-              <a href="#contact" class="footer__link">Contact</a>
-            </li>
-          </ul>
-
-          <div class="footer__socials">
-            <a
-              href="https://www.linkedin.com/in/vinayakgubber/"
-              target="_blank"
-              class="footer__social"
-            >
-              <i class="uil uil-linkedin-alt"></i>
-            </a>
-            <a
-              href="https://github.com/VinayakGubber"
-              target="_blank"
-              class="footer__social"
-            >
-              <i class="uil uil-github-alt"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/_vinayak__007___/"
-              target="_blank"
-              class="footer__social"
-            >
-              <i class="uil uil-instagram"></i>
-            </a>
-          </div>
-        </div>
-
-        <p class="footer__copy">&#169; Vinayak Gubber. All rights reserved</p>
       </div>
-    </footer>
-
-    <!--==================== SCROLL TOP ====================-->
-    <a href="#" class="scrollup" id="scroll-up">
-      <i class="uil uil-arrow-up scrollup__icon"></i>
+      <div class="hero-right">
+        <div class="hero-photo-frame">
+          <div class="hero-photo-placeholder">
+            <img src="assets/img/Profile_Slack.jpg" alt="Vinayak Gubber" class="hero-photo">
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint">
+      <i class="uil uil-mouse-alt" style="font-size:1.2rem;"></i>
+      <span>Scroll</span>
     </a>
+  </section>
 
-    <!--==================== SWIPER JS ====================-->
-    <script src="assets/swiper-bundle.min.js"></script>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label">Introduction</div>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-image-col fade-up">
+          <div class="about-img-frame">
+            <img src="assets/img/IMG_6623.jpg" alt="Vinayak Gubber">
+          </div>
+          <!-- <div class="stat-strip">
+        <div class="stat">
+          <span class="stat-num">8.05</span>
+          <span class="stat-lbl">CGPA</span>
+        </div>
+        <div class="stat" style="border-left:1px solid var(--stone); padding-left:2rem;">
+          <span class="stat-num">3+</span>
+          <span class="stat-lbl">Projects</span>
+        </div>
+        <div class="stat" style="border-left:1px solid var(--stone); padding-left:2rem;">
+          <span class="stat-num">2024</span>
+          <span class="stat-lbl">Bengaluru</span>
+        </div>
+      </div> -->
+        </div>
+        <div class="about-text fade-up" style="transition-delay:0.15s">
+          <p>
+            I’m passionate about technology and enjoy exploring new ideas through learning and building. I value
+            curiosity and continuous growth.
+          <p>
+            With a self-motivated, detail-oriented, and adaptable approach, I work well in challenging environments and
+            focus on improving with every experience.</p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!--==================== MAIN JS ====================-->
-    <script src="assets/ptj.js"></script>
-  </body>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-label">Expertise</div>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-wrapper">
+        <div class="skill-group fade-up">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">HTML</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">CSS</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">JavaScript</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Java</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-group fade-up" style="transition-delay:0.1s">
+          <div class="skill-group-title">IT Constructs</div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">OOP</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Computer Networks</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">DS & Algorithms</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Operating Systems</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-group fade-up" style="transition-delay:0.2s">
+          <div class="skill-group-title">Technologies</div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">Git</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">MongoDB</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">ReactJs</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">NodeJs</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header"><span class="skill-name">MySQL</span></div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-w="70"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALIFICATION -->
+  <section id="qualification">
+    <div class="section-inner">
+      <div class="section-label">Background</div>
+      <h2 class="section-title">My Journey</h2>
+      <div class="timeline">
+
+        <!-- 1. Internship -->
+        <div class="timeline-item fade-up" style="transition-delay:0.1s">
+          <div class="timeline-dot" style="border-color: var(--accent); background: var(--cream);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);"></div>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-date timeline-date-intership"></div>
+            <div class="timeline-title timeline-title-position">Solutions Engineering Intern</div>
+            <div class="timeline-sub">Whatfix, Bengaluru</div>
+          </div>
+        </div>
+
+        <!-- 2. Current: MCA -->
+        <div class="timeline-item fade-up" style="transition-delay:0s">
+          <div class="timeline-dot" style="border-color: var(--accent); background: var(--cream);">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);"></div>
+          </div>
+          <div class="timeline-body">
+            <div class="timeline-date timeline-date-masters">2024 — Present</div>
+            <div class="timeline-title">Master of Computer Applications</div>
+            <div class="timeline-sub">R V College of Engineering, Bengaluru</div>
+          </div>
+        </div>
+
+        <!-- 3. BCA -->
+        <div class="timeline-item fade-up" style="transition-delay:0.2s">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <div class="timeline-date timeline-date-degree">2021 — 2024</div>
+            <div class="timeline-title">Bachelor of Computer Applications</div>
+            <div class="timeline-sub">Vidyabarathi Foundation's IBMR College · 8.43 CGPA</div>
+          </div>
+        </div>
+
+        <!-- 4. Class XII -->
+        <div class="timeline-item fade-up" style="transition-delay:0.3s">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <div class="timeline-date timeline-date-puc">2021</div>
+            <div class="timeline-title">Class XII — PCMS</div>
+            <div class="timeline-sub">JSS SM INDP PU College</div>
+          </div>
+        </div>
+
+        <!-- 5. SSLC -->
+        <div class="timeline-item fade-up" style="transition-delay:0.4s">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <div class="timeline-date timeline-date-school">2018</div>
+            <div class="timeline-title">SSLC</div>
+            <div class="timeline-sub">JSS SDM Central School</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="portfolio">
+    <div class="section-inner">
+      <div class="section-label">Work</div>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card fade-up">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder">
+              <!-- <img src="assets/img/PROJECT___NoteSphere_Preview.png" alt="Note Sphere"> -->
+              <span class="project-placeholder-icon">◈</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">MERN Stack · Web Application</span>
+            <h3 class="project-title">Note Sphere</h3>
+            <p class="project-desc">
+              A full-stack note management application built using MongoDB, Express, React, and Node.js. Enables users
+              to securely create, organize, and access notes with a focus on clean architecture and seamless user
+              experience.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/VinayakGubber/NoteSphere" target="_blank" class="project-link">
+                GitHub <i class="uil uil-external-link-alt"></i>
+              </a>
+              <a href="#" target="_blank" class="project-link  disabled-link">Live Demo <i
+                  class="uil uil-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up" style="transition-delay:0.15s">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder">
+              <!-- <img src="assets/img/PROJECT___ResumeBuilder_Preview.png" alt="Resume Builder"> -->
+              <span class="project-placeholder-icon">◇</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">HTML · CSS · JavaScript</span>
+            <h3 class="project-title">Resume Builder</h3>
+            <p class="project-desc">
+              A lightweight, client-side web application that allows users to generate structured, professional resumes
+              from form inputs. Designed for simplicity and performance with no external dependencies.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/VinayakGubber/ResumeBuilder" target="_blank" class="project-link">
+                GitHub <i class="uil uil-external-link-alt"></i>
+              </a>
+              <a href="https://resumebuilder-fawn.vercel.app/" target="_blank" class="project-link">Live Demo <i
+                  class="uil uil-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up" style="transition-delay:0.3s">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder">
+              <span class="project-placeholder-icon">◆</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">Node.js · REST API</span>
+            <h3 class="project-title">Random Quote API</h3>
+            <p class="project-desc">
+              A minimalist REST API built with Node.js and Express that serves curated quotes from a local dataset.
+              Designed for simplicity, fast response times, and easy integration into frontend applications.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/VinayakGubber/RandomQuoteAPI" target="_blank" class="project-link">
+                GitHub <i class="uil uil-external-link-alt"></i>
+              </a>
+              <a href="https://random-quote-api-five.vercel.app/" target="_blank" class="project-link">Live Demo <i
+                  class="uil uil-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up" style="transition-delay:0.45s">
+          <div class="project-img-wrap">
+            <div class="project-img-placeholder">
+              <span class="project-placeholder-icon">⬟</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="project-tag">AWS · Full Stack System</span>
+            <h3 class="project-title">Student Grievance Portal</h3>
+            <p class="project-desc">
+              A full-stack feedback and grievance management system with role-based access for students and
+              administrators. Built with a scalable AWS architecture using S3, EC2, and RDS, focusing on secure data
+              handling.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/VinayakGubber/StudentGrievancePortal" target="_blank" class="project-link">
+                GitHub <i class="uil uil-external-link-alt"></i>
+              </a>
+              <a href="#" class="project-link  disabled-link">Live Demo <i class="uil uil-external-link-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-layout">
+        <div class="contact-left fade-up">
+          <p class="contact-tagline">"Open to new challenges and collaborations."</p>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="uil uil-phone"></i></div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-value">+91 82773 05907</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="uil uil-envelope"></i></div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value"><a href="mailto:gubbervinayak@gmail.com">gubbervinayak@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="uil uil-map-marker"></i></div>
+            <div>
+              <div class="contact-label">Location</div>
+              <div class="contact-value">Bengaluru, Karnataka — India</div>
+            </div>
+          </div>
+        </div>
+        <div class="disabled contact-form-col fade-up" style="transition-delay:0.15s">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 2rem;">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-input" placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" placeholder="What's this about?">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Your message..."></textarea>
+          </div>
+          <a href="" class="disabled-link"><button class="btn btn-primary" style="margin-top:0.5rem;">
+              Send Message <i class="uil uil-message"></i>
+            </button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Vinayak Gubber</div>
+    <p class="footer-title" style="font-size:12px;">Master of Computer Applications Student</p>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/vinayakgubber/" target="_blank"><i class="uil uil-linkedin-alt"></i></a>
+      <a href="https://github.com/VinayakGubber" target="_blank"><i class="uil uil-github-alt"></i></a>
+      <a href="https://www.instagram.com/_vinayak__007___/" target="_blank"><i class="uil uil-instagram"></i></a>
+    </div>
+    <p class="footer-copy">Feel free to use this template</p>
+  </footer>
+
+  <a href="#home" class="scroll-top" id="scrollTop">
+    <i class="uil uil-arrow-up"></i>
+  </a>
+
+  <script>
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    function closeNav() { navLinks.classList.remove('open'); }
+
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTop.classList.toggle('visible', window.scrollY > 400);
+    });
+
+    const fills = document.querySelectorAll('.skill-fill');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.width = e.target.dataset.w + '%';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    fills.forEach(f => io.observe(f));
+
+    const fades = document.querySelectorAll('.fade-up');
+    const fadeObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    fades.forEach(f => fadeObs.observe(f));
+
+    setTimeout(() => {
+      document.querySelectorAll('#home .fade-up, #home h1, #home p, #home .hero-actions').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 100);
+
+    /* Dynamic part - Self Start */
+
+
+    /* Required Details - Start*/
+    // Date Details
+    const date = new Date();
+
+    // Current Year
+    let currentYear = date.getFullYear()
+    let currentMonth = date.getMonth() + 1;
+    console.log(currentYear, currentMonth);
+
+    //Graduation Completion
+    let gradCompYear = 2026;
+    let intenshipStartMonth = 9;
+    let intenshipStartYear = 2025;
+    let birthYear = 2002;
+    let birthmonth = 3;
+    let birthDate = 25;
+    /* Required Details - End*/
+
+    /* Dynamic Logic - Start*/
+    // Status Change for Education
+    let mastersTimline = document.querySelector('[class*="timeline-date-masters"]');
+    mastersTimline.textContent = (currentYear < 2027 || (currentYear === 2026 && currentMonth < 10)) ? "2024 — Present" : `2024 — ${gradCompYear}`
+
+    // Status Change for Internship
+    let internshipDuration = document.querySelector('[class*="timeline-date-intership"]')
+    const internshipDurationYears = currentYear - intenshipStartYear - (currentMonth < intenshipStartMonth ? 1 : 0);
+    const internshipDurationMonths = (currentMonth - intenshipStartMonth + 12) % 12;
+    internshipDuration.textContent = `2025 — Present · ${internshipDurationYears} Years ${internshipDurationMonths} Months`;
+
+    // Other Changes
+    let role = document.querySelector('[class*="timeline-title-position"]')
+    document.querySelector('[class="hero-label"]').textContent = `${role.textContent}`
+    document.querySelector('[class="hero-desc"]').textContent = `Currently working as ${role.textContent} focused on designing scalable solutions and bridging business needs with technical implementation.`
+    document.querySelector('[class="footer-title"]').textContent = `${role.textContent}`
+
+
+    /* Dynamic Logic - End*/
+
+    /* Dynamic part - Self End*/
+
+    console.log("Last line of Dynamic code reached")
+  </script>
+</body>
+
 </html>
